@@ -11,24 +11,15 @@ class SleepRepository {
 		});
 		return sleepDataForUser;
 	}
-
-	getAverageSleepQualityForUserAllTime(idNum) {
-		const averageSleeps = this.getSleepDataForUser(idNum);
-		let averageUserSleepQualityForAll = averageSleeps.reduce((quality, cur) => {
-			quality += cur.sleepQuality;
-			return quality;
-		}, 0);
-		return averageUserSleepQualityForAll / averageSleeps.length;
-	}
-
-	getAverageSleepHoursForUserAllTime(idNum) {
+  
+	getAverageSleepForUserAllTime(idNum, property) {
 		const sleepDataForUser = this.getSleepDataForUser(idNum);
-		let averageUserSleepHours = sleepDataForUser.reduce((hours, cur) => {
-			hours += cur.hoursSlept;
-			return hours;
-		}, 0);
-		return averageUserSleepHours / sleepDataForUser.length;
-	}
+		let averageSleepForUserAllTime = sleepDataForUser.reduce((counter,currentDate) => {
+			counter += currentDate[property]
+			return counter
+		},0);
+		return averageSleepForUserAllTime / sleepDataForUser.length;
+  }
 
 	getSleepDataByDate(date, property, id) {
 		let sleepDataByDay = this.sleepData.find((element) => {
