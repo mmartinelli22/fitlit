@@ -29,7 +29,6 @@ getHydrationDataFromAPI().then(res => {
 
 getSleepDataFromAPI().then((res) => {
   setSleepData(res.sleepData);
-
   sleepBuildAttributes(sleepRepo);
 });
 
@@ -111,8 +110,8 @@ const userBuildAttributes = (user) => {
 
 const formatHydrationData = () => {
   const userHydrationDataPerWeek = hydrationRepo.getUserHydrationPerWeek(userId, "2020/01/22");
-  const formattedData = userHydrationDataPerWeek.map(obj => {
-    return `${obj.date}: ${obj.ounces} ounces`;
+  const formattedData = userHydrationDataPerWeek.map(hydrationData => {
+    return `${hydrationData.date}: ${hydrationData.ounces} ounces`;
   });
   hydrationDayHTMLCollection.forEach((dayElem, index) => {
     dayElem.innerText = `${formattedData[index]}`
@@ -132,17 +131,18 @@ const sleepBuildAttributes = (sleepRepoParam) => {
 };
 
 const formatSleepData = () => {
-	const userSleepHoursPerWeek = sleepRepo.getUsersSleepDataPerWeek(userId,'2020/01/22','hoursSlept');
-  const userSleepQualityPerWeek = sleepRepo.getUsersSleepDataPerWeek(userId,'2020/01/22','sleepQuality');
-	const formattedHours = userSleepHoursPerWeek.map((obj) => {
-		return `${obj.hoursSlept}`;
-	});
-  const formattedQuality = userSleepQualityPerWeek.map((obj) => {
-		return `${obj.sleepQuality}`;
-	});
-	sleepDayHTMLCollection.forEach((dayElem, index) => {
-		dayElem.innerText = `${userSleepHoursPerWeek[index].date} : ${formattedHours[index]} hours of sleep, your sleep quality is ${formattedQuality[index]}/5.`;
-	});
+  const userSleepHoursPerWeek = sleepRepo.getUsersSleepDataPerWeek(userId, '2020/01/22', 'hoursSlept');
+  const userSleepQualityPerWeek = sleepRepo.getUsersSleepDataPerWeek(userId, '2020/01/22', 'sleepQuality');
+  const formattedHours = userSleepHoursPerWeek.map((hours) => {
+    return `${hours.hoursSlept} hours.`;
+  });
+  const formattedQuality = userSleepQualityPerWeek.map((quality) => {
+    return `${quality.sleepQuality} hours.`;
+  });
+  sleepDayHTMLCollection.forEach((dayElem, index) => {
+    dayElem.innerText = `${userSleepHoursPerWeek[index].date} : ${formattedHours[index]} hours of sleep,
+    ${formattedQuality[index]} sleep quality out of 5.`;
+  });
 };
 
 
