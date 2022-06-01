@@ -6,12 +6,12 @@ class SleepRepository {
 	getSleepDataForUser(idNum) {
 		const sleepDataForUser = this.sleepData.filter((obj) => {
 			if (obj.userID === idNum) {
-				return obj;
+				return idNum;
 			}
 		});
 		return sleepDataForUser;
 	}
-
+  
 	getAverageSleepForUserAllTime(idNum, property) {
 		const sleepDataForUser = this.getSleepDataForUser(idNum);
 		let averageSleepForUserAllTime = sleepDataForUser.reduce((counter,currentDate) => {
@@ -19,7 +19,7 @@ class SleepRepository {
 			return counter
 		},0);
 		return averageSleepForUserAllTime / sleepDataForUser.length;
-	}
+  }
 
 	getSleepDataByDate(date, property, id) {
 		let sleepDataByDay = this.sleepData.find((element) => {
@@ -44,9 +44,9 @@ class SleepRepository {
 	}
 
 	getAllUsersAverageSleep() {
-		const allUsersAverageSleep = this.sleepData.reduce((acc, currentUser) => {
-			acc += currentUser.sleepQuality;
-			return acc;
+		const allUsersAverageSleep = this.sleepData.reduce((average, currentUser) => {
+			average += currentUser.sleepQuality;
+			return average;
 		}, 0);
 		return allUsersAverageSleep / this.sleepData.length;
 	}
