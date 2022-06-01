@@ -58,6 +58,7 @@ var hydrationDays = document.querySelectorAll('.hydration-day');
 var userSleepPerDay = document.querySelector('#UserSleepPerDay');
 var userSleepAllTime = document.querySelector('#userSleepAllTime');
 var sleepDays = document.querySelectorAll('.sleep-day');
+var errorMessage = document.querySelector('.error-message');
 
 //*~~~~~~~~Functions~~~~~~~*//
 function getUserData() {
@@ -111,3 +112,5 @@ const formatSleepData = () => {
 		dayElem.innerText = `${userSleepHoursPerWeek[index].date} : ${formattedHours[index]} hours, ${formattedQuality[index]}/5 sleep quality`;
 	});
 }
+
+export {errorMessage};
