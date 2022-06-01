@@ -1,19 +1,12 @@
-function getUserDataFromAPI() {
-    return fetch('https://fitlit-api.herokuapp.com/api/v1/users')
+import {errorMessage} from './scripts.js'
+
+function fetchApiData(url) {
+    return fetch(url)
         .then(promise => promise.json())
-        .catch(error => console.log(error))
+        .catch(error => {
+            console.log('oh no!', error)
+            return errorMessage.innerText = error.message;
+        });
 };
 
-function getSleepDataFromAPI() {
-    return fetch('https://fitlit-api.herokuapp.com/api/v1/sleep')
-        .then(promise => promise.json())
-        .catch(error => console.log(error))
-};
-
-function getHydrationDataFromAPI() {
-    return fetch('https://fitlit-api.herokuapp.com/api/v1/hydration')
-        .then(promise => promise.json())
-        .catch(error => console.log(error))
-};
-
-export { getUserDataFromAPI, getSleepDataFromAPI, getHydrationDataFromAPI };
+export {fetchApiData};

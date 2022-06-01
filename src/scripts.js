@@ -1,5 +1,5 @@
 ///*~~~~~~~~Imports from Other Files~~~~~~~~*/
-import { getUserDataFromAPI, getSleepDataFromAPI, getHydrationDataFromAPI } from './apiCalls.js';
+import {fetchApiData} from './apiCalls.js';
 import './css/styles.css';
 import HydrationRepository from './HydrationRepository.js';
 import UserRepository from './UserRepository';
@@ -16,21 +16,21 @@ const getRandomID = () => {
 
 const userId = getRandomID();
 
-getUserDataFromAPI().then(res => {
-  setUserData(res.userData);
-  const thisUser = getUserData();
-  userBuildAttributes(thisUser);
-});
+const userPromise = fetchApiData('https://fitlit-api.herokuapp.com/api/v1/users');
+const hydrationPromise = fetchApiData('https://fitlit-api.herokuapp.com/api/v1/hydration');
+const sleepPromise = fetchApiData('https://fitlit-api.herokuapp.com/api/v1/sleep');
 
-getHydrationDataFromAPI().then(res => {
-  setHydrationData(res.hydrationData);
-  hydrationBuildAttributes(hydrationRepo);
-});
-
-getSleepDataFromAPI().then((res) => {
-  setSleepData(res.sleepData);
-  sleepBuildAttributes(sleepRepo);
-});
+Promise.all([userPromise, hydrationPromise, sleepPromise])
+  .then((value) => {
+    console.log(value)
+    setUserData(value[0].userData)
+    const thisUser = getUserData();
+    userBuildAttributes(thisUser);
+    setHydrationData(value[1].hydrationData);
+    hydrationBuildAttributes(hydrationRepo);
+    setSleepData(value[2].sleepData);
+    sleepBuildAttributes(sleepRepo);
+  });
 
 const setUserData = (someData) => {
   userRepo = new UserRepository(someData);
@@ -58,6 +58,7 @@ var hydrationDays = document.querySelectorAll('.hydration-day');
 var userSleepPerDay = document.querySelector('#UserSleepPerDay');
 var userSleepAllTime = document.querySelector('#userSleepAllTime');
 var sleepDays = document.querySelectorAll('.sleep-day');
+var errorMessage = document.querySelector('.error-message');
 
 //*~~~~~~~~Functions~~~~~~~*//
 function getUserData() {
@@ -111,3 +112,5 @@ const formatSleepData = () => {
 		dayElem.innerText = `${userSleepHoursPerWeek[index].date} : ${formattedHours[index]} hours, ${formattedQuality[index]}/5 sleep quality`;
 	});
 }
+
+export {errorMessage};
