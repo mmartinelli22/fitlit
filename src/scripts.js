@@ -1,5 +1,5 @@
 ///*~~~~~~~~Imports from Other Files~~~~~~~~*/
-import { getUserDataFromAPI, getSleepDataFromAPI, getHydrationDataFromAPI } from './apiCalls.js';
+import {fetchApiData} from './apiCalls.js';
 import './css/styles.css';
 import HydrationRepository from './HydrationRepository.js';
 import UserRepository from './UserRepository';
@@ -16,18 +16,18 @@ const getRandomID = () => {
 
 const userId = getRandomID();
 
-getUserDataFromAPI().then(res => {
+fetchApiData('https://fitlit-api.herokuapp.com/api/v1/users').then(res => {
   setUserData(res.userData);
   const thisUser = getUserData();
   userBuildAttributes(thisUser);
 });
 
-getHydrationDataFromAPI().then(res => {
+fetchApiData('https://fitlit-api.herokuapp.com/api/v1/hydration').then(res => {
   setHydrationData(res.hydrationData);
   hydrationBuildAttributes(hydrationRepo);
 });
 
-getSleepDataFromAPI().then((res) => {
+fetchApiData('https://fitlit-api.herokuapp.com/api/v1/sleep').then((res) => {
   setSleepData(res.sleepData);
   sleepBuildAttributes(sleepRepo);
 });
