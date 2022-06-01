@@ -54,42 +54,10 @@ var strideLength = document.querySelector('#strideLength');
 var averageUserGoal = document.querySelector('#averageStepGoal');
 var userWaterDay = document.querySelector('#userWaterPerDay');
 var userName = document.querySelector('#userName');
-var hydrationDay1 = document.querySelector('#hydrationDay1');
-var hydrationDay2 = document.querySelector('#hydrationDay2');
-var hydrationDay3 = document.querySelector('#hydrationDay3');
-var hydrationDay4 = document.querySelector('#hydrationDay4');
-var hydrationDay5 = document.querySelector('#hydrationDay5');
-var hydrationDay6 = document.querySelector('#hydrationDay6');
-var hydrationDay7 = document.querySelector('#hydrationDay7');
+var hydrationDays = document.querySelectorAll('.hydration-day');
 var userSleepPerDay = document.querySelector('#UserSleepPerDay');
 var userSleepAllTime = document.querySelector('#userSleepAllTime');
-var sleepDay1 = document.querySelector('#sleepDay1');
-var sleepDay2 = document.querySelector('#sleepDay2');
-var sleepDay3 = document.querySelector('#sleepDay3');
-var sleepDay4 = document.querySelector('#sleepDay4');
-var sleepDay5 = document.querySelector('#sleepDay5');
-var sleepDay6 = document.querySelector('#sleepDay6');
-var sleepDay7 = document.querySelector('#sleepDay7');
-
-var hydrationDayHTMLCollection = [
-  hydrationDay1,
-  hydrationDay2,
-  hydrationDay3,
-  hydrationDay4,
-  hydrationDay5,
-  hydrationDay6,
-  hydrationDay7
-];
-
-var sleepDayHTMLCollection = [
-  sleepDay1,
-  sleepDay2,
-  sleepDay3,
-  sleepDay4,
-  sleepDay5,
-  sleepDay6,
-  sleepDay7,
-];
+var sleepDays = document.querySelectorAll('.sleep-day');
 
 //*~~~~~~~~Functions~~~~~~~*//
 function getUserData() {
@@ -113,7 +81,7 @@ const formatHydrationData = () => {
   const formattedData = userHydrationDataPerWeek.map(hydrationData => {
     return `${hydrationData.date}: ${hydrationData.ounces} ounces`;
   });
-  hydrationDayHTMLCollection.forEach((dayElem, index) => {
+  hydrationDays.forEach((dayElem, index) => {
     dayElem.innerText = `${formattedData[index]}`
   });
 };
@@ -139,7 +107,7 @@ const formatSleepData = () => {
   const formattedQuality = userSleepQualityPerWeek.map((quality) => {
 		return `${quality.sleepQuality}`;
 	});
-	sleepDayHTMLCollection.forEach((dayElem, index) => {
+	sleepDays.forEach((dayElem, index) => {
 		dayElem.innerText = `${userSleepHoursPerWeek[index].date} : ${formattedHours[index]} hours, ${formattedQuality[index]}/5 sleep quality`;
 	});
 }
