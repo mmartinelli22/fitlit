@@ -5,7 +5,7 @@ class UserRepository {
         this.users = data;
     }
     getUserById(num) {
-        const correctUser = userData.find(user => user.id === num)
+        const correctUser = this.users.find(user => user.id === num)
         return correctUser;
     };
 

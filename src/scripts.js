@@ -29,7 +29,6 @@ getHydrationDataFromAPI().then(res => {
 
 getSleepDataFromAPI().then((res) => {
   setSleepData(res.sleepData);
-
   sleepBuildAttributes(sleepRepo);
 });
 
@@ -111,8 +110,8 @@ const userBuildAttributes = (user) => {
 
 const formatHydrationData = () => {
   const userHydrationDataPerWeek = hydrationRepo.getUserHydrationPerWeek(userId, "2020/01/22");
-  const formattedData = userHydrationDataPerWeek.map(obj => {
-    return `${obj.date}: ${obj.ounces} ounces`;
+  const formattedData = userHydrationDataPerWeek.map(hydrationData => {
+    return `${hydrationData.date}: ${hydrationData.ounces} ounces`;
   });
   hydrationDayHTMLCollection.forEach((dayElem, index) => {
     dayElem.innerText = `${formattedData[index]}`
@@ -134,15 +133,15 @@ const sleepBuildAttributes = (sleepRepoParam) => {
 const formatSleepData = () => {
 	const userSleepHoursPerWeek = sleepRepo.getUsersSleepDataPerWeek(userId,'2020/01/22','hoursSlept');
   const userSleepQualityPerWeek = sleepRepo.getUsersSleepDataPerWeek(userId,'2020/01/22','sleepQuality');
-	const formattedHours = userSleepHoursPerWeek.map((obj) => {
-		return `${obj.hoursSlept}`;
+	const formattedHours = userSleepHoursPerWeek.map((hours) => {
+		return `${hours.hoursSlept}`;
 	});
-  const formattedQuality = userSleepQualityPerWeek.map((obj) => {
-		return `${obj.sleepQuality}`;
+  const formattedQuality = userSleepQualityPerWeek.map((quality) => {
+		return `${quality.sleepQuality}`;
 	});
 	sleepDayHTMLCollection.forEach((dayElem, index) => {
 		dayElem.innerText = `${userSleepHoursPerWeek[index].date} : ${formattedHours[index]} hours, ${formattedQuality[index]}/5 sleep quality`;
 	});
-};
+
 
 
