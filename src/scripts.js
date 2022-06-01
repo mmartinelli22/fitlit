@@ -128,7 +128,7 @@ const sleepBuildAttributes = (sleepRepoParam) => {
   userSleepPerDay.innerHTML = `<p>You got ${sleepRepoParam.getSleepDataByDate('2020/01/22', 'hoursSlept', userId)} hours sleep today. 
   Your sleep quality is ${sleepRepoParam.getSleepDataByDate('2020/01/22', 'sleepQuality', userId)} out of 5.</p>`;
   formatSleepData();
-  userSleepAllTime.innerHTML = `<p>On average, you sleep ${sleepRepoParam.getAverageSleepHoursForUserAllTime(userId).toFixed(2)} hours per night. Your average sleep quality is ${sleepRepoParam.getAverageSleepQualityForUserAllTime(userId).toFixed(2)} out of 5.</p>`
+  userSleepAllTime.innerHTML = `<p>On average, you sleep ${sleepRepoParam.getAverageSleepForUserAllTime(userId, "hoursSlept").toFixed(2)} hours per night. Your average sleep quality is ${sleepRepoParam.getAverageSleepForUserAllTime(userId, 'sleepQuality').toFixed(2)} out of 5.</p>`;
 };
 
 const formatSleepData = () => {
