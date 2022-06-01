@@ -4,8 +4,8 @@ class SleepRepository {
 	}
 
 	getSleepDataForUser(idNum) {
-		const sleepDataForUser = this.sleepData.filter((obj) => {
-			if (obj.userID === idNum) {
+		const sleepDataForUser = this.sleepData.filter((sleepdata) => {
+			if (sleepdata.userID === idNum) {
 				return idNum;
 			}
 		});

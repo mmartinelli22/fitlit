@@ -16,21 +16,21 @@ const getRandomID = () => {
 
 const userId = getRandomID();
 
-fetchApiData('https://fitlit-api.herokuapp.com/api/v1/users').then(res => {
-  setUserData(res.userData);
-  const thisUser = getUserData();
-  userBuildAttributes(thisUser);
-});
+const userPromise = fetchApiData('https://fitlit-api.herokuapp.com/api/v1/users');
+const hydrationPromise = fetchApiData('https://fitlit-api.herokuapp.com/api/v1/hydration');
+const sleepPromise = fetchApiData('https://fitlit-api.herokuapp.com/api/v1/sleep');
 
-fetchApiData('https://fitlit-api.herokuapp.com/api/v1/hydration').then(res => {
-  setHydrationData(res.hydrationData);
-  hydrationBuildAttributes(hydrationRepo);
-});
-
-fetchApiData('https://fitlit-api.herokuapp.com/api/v1/sleep').then((res) => {
-  setSleepData(res.sleepData);
-  sleepBuildAttributes(sleepRepo);
-});
+Promise.all([userPromise, hydrationPromise, sleepPromise])
+  .then((value) => {
+    console.log(value)
+    setUserData(value[0].userData)
+    const thisUser = getUserData();
+    userBuildAttributes(thisUser);
+    setHydrationData(value[1].hydrationData);
+    hydrationBuildAttributes(hydrationRepo);
+    setSleepData(value[2].sleepData);
+    sleepBuildAttributes(sleepRepo);
+  });
 
 const setUserData = (someData) => {
   userRepo = new UserRepository(someData);
