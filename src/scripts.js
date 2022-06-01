@@ -99,12 +99,12 @@ function getUserData() {
 };
 
 const userBuildAttributes = (user) => {
-  userName.innerHTML = `Name: ${user.name}`;
-  emailAddress.innerHTML = `Email: ${user.email}`;
-  stepGoal.innerHTML = `Your step goal: ${user.dailyStepGoal} steps per day`;
-  friends.innerHTML = `Friends: ${user.friends.map(num => ' ' + userRepo.users.find(user => user.id === num).name)}`;
-  address.innerHTML = `Address: ${user.address}`;
-  strideLength.innerHTML = `Stride Length: ${user.strideLength} feet`;
+  userName.innerHTML = `<span class="user-property-names">Name:</span> ${user.name}`;
+  emailAddress.innerHTML = `<span class="user-property-names">Email:</span> ${user.email}`;
+  stepGoal.innerHTML = `<span class="user-property-names">Your step goal:</span> ${user.dailyStepGoal} steps per day`;
+  friends.innerHTML = `<span class="user-property-names">Friends:</span> ${user.friends.map(num => ' ' + userRepo.users.find(user => user.id === num).name)}`;
+  address.innerHTML = `<span class="user-property-names">Address:</span> ${user.address}`;
+  strideLength.innerHTML = `<span class="user-property-names">Stride Length:</span> ${user.strideLength} feet`;
   userGreeting.innerHTML = `Welcome ${user.name.split(" ")[0]}!`;
   averageUserGoal.innerHTML = `The average fitlit user's goal is ${userRepo.getAverageSteps()} steps.`;
 };
@@ -125,8 +125,8 @@ const hydrationBuildAttributes = (hydrationRepoParam) => {
 }
 
 const sleepBuildAttributes = (sleepRepoParam) => {
-  userSleepPerDay.innerHTML = `<p>You got ${sleepRepoParam.getSleepDataByDate('2020/01/22', 'hoursSlept', userId)} hours sleep today. 
-  Your sleep quality is ${sleepRepoParam.getSleepDataByDate('2020/01/22', 'sleepQuality', userId)}/5.</p>`;
+  userSleepPerDay.innerHTML = `<p>You got ${sleepRepoParam.getSleepDataByDate('2020/01/22', 'hoursSlept', userId)} hours sleep today 
+  with ${sleepRepoParam.getSleepDataByDate('2020/01/22', 'sleepQuality', userId)}/5 sleep quality.</p>`;
   formatSleepData();
   userSleepAllTime.innerHTML = `<p>On average, you sleep ${sleepRepoParam.getAverageSleepHoursForUserAllTime(userId).toFixed(2)} hours a night with an average sleep quality of ${sleepRepoParam.getAverageSleepQualityForUserAllTime(userId).toFixed(2)}/5.</p>`
 };
