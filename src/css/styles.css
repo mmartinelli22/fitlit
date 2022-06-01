@@ -1,14 +1,15 @@
 body,
 html {
-  background-color: #3bb957;
+  background-color: #D6EFFF;
   width: 100%;
   height: 100%;
   font-family: 'Jaldi', sans-serif;
+  color: #573B10;
 }
 
 header {
   width: 400px;
-  background-color: #98d1d9;
+  background-color: #FED99B;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -46,11 +47,11 @@ p {
 header,
 .card-box {
   border-radius: 25px;
-  box-shadow: inset 0 4px 6px 0px #4c6cd5
+  box-shadow: inset 0 4px 6px 0px #D9A14E
 }
 
 .card {
-  background-color: #ffdb7e;
+  background-color: #FED18C;
   width: 400px;
   height: 450px;
   ;
@@ -61,7 +62,7 @@ header,
 }
 
 .card-box {
-  background-color: #fff8f5;
+  background-color: #FEFEFF;
   width: 80%;
   margin: 10px;
 }
@@ -83,7 +84,6 @@ header,
 }
 
 #userGreeting {
-  color: #ffffff;
   font-size: 16px;
   margin-bottom: 0px;
 }
