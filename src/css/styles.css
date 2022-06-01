@@ -35,9 +35,9 @@ h3 {
 }
 
 p {
-  font-size: 12px;
-  margin: 2px;
-  padding: 3px;
+  font-size: 17px;
+  margin: 1px;
+  padding: 1px;
 }
  h4 {
    margin: 5px;
@@ -50,11 +50,14 @@ header,
   box-shadow: inset 0 4px 6px 0px #D9A14E
 }
 
+.card-box {
+padding: 10px;
+}
+
 .card {
   background-color: #FED18C;
   width: 400px;
-  height: 450px;
-  ;
+  height: 550px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -84,6 +87,6 @@ header,
 }
 
 #userGreeting {
-  font-size: 16px;
+  font-size: 25px;
   margin-bottom: 0px;
 }
