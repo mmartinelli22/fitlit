@@ -98,14 +98,14 @@ function getUserData() {
 };
 
 const userBuildAttributes = (user) => {
-  userName.innerHTML = `Name: ${user.name}`;
-  emailAddress.innerHTML = `Email: ${user.email}`;
-  stepGoal.innerHTML = `Goal: ${user.dailyStepGoal} steps`;
-  friends.innerHTML = `Friends: ${user.friends.map(num => ' ' + userRepo.users.find(user => user.id === num).name)}`;
-  address.innerHTML = `Address: ${user.address}`;
-  strideLength.innerHTML = `Stride Length: ${user.strideLength} feet`;
+  userName.innerHTML = `<span class="user-property-names">Name:</span> ${user.name}`;
+  emailAddress.innerHTML = `<span class="user-property-names">Email:</span> ${user.email}`;
+  stepGoal.innerHTML = `<span class="user-property-names">Your step goal:</span> ${user.dailyStepGoal} steps per day`;
+  friends.innerHTML = `<span class="user-property-names">Friends:</span> ${user.friends.map(num => ' ' + userRepo.users.find(user => user.id === num).name)}`;
+  address.innerHTML = `<span class="user-property-names">Address:</span> ${user.address}`;
+  strideLength.innerHTML = `<span class="user-property-names">Stride Length:</span> ${user.strideLength} feet`;
   userGreeting.innerHTML = `Welcome ${user.name.split(" ")[0]}!`;
-  averageUserGoal.innerHTML = `On average, fitlit users are walking ${userRepo.getAverageSteps()} feet.`;
+  averageUserGoal.innerHTML = `The average fitlit user's goal is ${userRepo.getAverageSteps()} steps.`;
 };
 
 const formatHydrationData = () => {
@@ -124,25 +124,24 @@ const hydrationBuildAttributes = (hydrationRepoParam) => {
 }
 
 const sleepBuildAttributes = (sleepRepoParam) => {
-  userSleepPerDay.innerHTML = `<p>You got ${sleepRepoParam.getSleepDataByDate('2020/01/22', 'hoursSlept', userId)} hours sleep today. 
-  Your sleep quality is ${sleepRepoParam.getSleepDataByDate('2020/01/22', 'sleepQuality', userId)} out of 5.</p>`;
+  userSleepPerDay.innerHTML = `<p>You got ${sleepRepoParam.getSleepDataByDate('2020/01/22', 'hoursSlept', userId)} hours sleep today 
+  with ${sleepRepoParam.getSleepDataByDate('2020/01/22', 'sleepQuality', userId)}/5 sleep quality.</p>`;
   formatSleepData();
-  userSleepAllTime.innerHTML = `<p>On average, you sleep ${sleepRepoParam.getAverageSleepHoursForUserAllTime(userId).toFixed(2)} hours per night. Your average sleep quality is ${sleepRepoParam.getAverageSleepQualityForUserAllTime(userId).toFixed(2)} out of 5.</p>`
+  userSleepAllTime.innerHTML = `<p>On average, you sleep ${sleepRepoParam.getAverageSleepHoursForUserAllTime(userId).toFixed(2)} hours a night with an average sleep quality of ${sleepRepoParam.getAverageSleepQualityForUserAllTime(userId).toFixed(2)}/5.</p>`
 };
 
 const formatSleepData = () => {
-  const userSleepHoursPerWeek = sleepRepo.getUsersSleepDataPerWeek(userId, '2020/01/22', 'hoursSlept');
-  const userSleepQualityPerWeek = sleepRepo.getUsersSleepDataPerWeek(userId, '2020/01/22', 'sleepQuality');
-  const formattedHours = userSleepHoursPerWeek.map((hours) => {
-    return `${hours.hoursSlept} hours.`;
-  });
+	const userSleepHoursPerWeek = sleepRepo.getUsersSleepDataPerWeek(userId,'2020/01/22','hoursSlept');
+  const userSleepQualityPerWeek = sleepRepo.getUsersSleepDataPerWeek(userId,'2020/01/22','sleepQuality');
+	const formattedHours = userSleepHoursPerWeek.map((hours) => {
+		return `${hours.hoursSlept}`;
+	});
   const formattedQuality = userSleepQualityPerWeek.map((quality) => {
-    return `${quality.sleepQuality} hours.`;
-  });
-  sleepDayHTMLCollection.forEach((dayElem, index) => {
-    dayElem.innerText = `${userSleepHoursPerWeek[index].date} : ${formattedHours[index]} hours of sleep,
-    ${formattedQuality[index]} sleep quality out of 5.`;
-  });
-};
+		return `${quality.sleepQuality}`;
+	});
+	sleepDayHTMLCollection.forEach((dayElem, index) => {
+		dayElem.innerText = `${userSleepHoursPerWeek[index].date} : ${formattedHours[index]} hours, ${formattedQuality[index]}/5 sleep quality`;
+	});
+
 
 
