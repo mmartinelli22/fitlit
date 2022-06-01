@@ -142,6 +142,4 @@ const formatSleepData = () => {
 	sleepDayHTMLCollection.forEach((dayElem, index) => {
 		dayElem.innerText = `${userSleepHoursPerWeek[index].date} : ${formattedHours[index]} hours, ${formattedQuality[index]}/5 sleep quality`;
 	});
-
-
-
+}
