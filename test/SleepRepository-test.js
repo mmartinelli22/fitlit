@@ -103,6 +103,6 @@ describe("Sleep", () => {
   });
 
   it("should have a function to return the average of all user's sleep quality", () => {
-    expect(sleepRepository.getAllUsersAverageSleep()).to.deep.equal(2.917142857142858);
+    expect(sleepRepository.getAllUsersAverageSleep()).to.deep.equal(2.733333333333334);
   });
 });
