@@ -49,6 +49,10 @@ describe('HydrationRepository', () => {
         expect(hydrationRepository.getUserHydrationForDay(1, '2019/06/15')).to.equal(37);
     });
 
+    it('Should have a function that returns undefined if user\'s id and a date do not exist', () => {
+        expect(hydrationRepository.getUserHydrationForDay(500, '1995/06/15')).to.equal(undefined);
+    });
+
     it('Should show users hydration data per week', () => {
         expect(hydrationRepository.getUserHydrationPerWeek(2, '2019/06/21')).to.deep.equal([
             { date: '2019/06/15', ounces: 75 },
