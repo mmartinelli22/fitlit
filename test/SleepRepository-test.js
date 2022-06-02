@@ -51,7 +51,7 @@ describe("Sleep", () => {
     expect(sleepRepository.getSleepDataByDate("2019/06/15", "hoursSlept", 2)).to.equal(7);
   });
 
-  it("should return hours slept for a specific day", () => {
+  it("should return undefined if worng date is entered", () => {
     expect(sleepRepository.getSleepDataByDate("2030/06/15", "hoursSlept", 1)).to.equal(undefined);
     expect(sleepRepository.getSleepDataByDate("2030/06/15", "hoursSlept", 2)).to.equal(undefined);
   });
