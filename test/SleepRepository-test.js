@@ -51,7 +51,7 @@ describe("Sleep", () => {
     expect(sleepRepository.getSleepDataByDate("2019/06/15", "hoursSlept", 2)).to.equal(7);
   });
 
-  it("should return undefined if worng date is entered", () => {
+  it("should return undefined if wrong date is entered for hours slept", () => {
     expect(sleepRepository.getSleepDataByDate("2030/06/15", "hoursSlept", 1)).to.equal(undefined);
     expect(sleepRepository.getSleepDataByDate("2030/06/15", "hoursSlept", 2)).to.equal(undefined);
   });
@@ -59,6 +59,11 @@ describe("Sleep", () => {
   it("should return user's slept quality for a specific day", () => {
     expect(sleepRepository.getSleepDataByDate("2019/06/15", "sleepQuality", 1)).to.equal(2.2);
     expect(sleepRepository.getSleepDataByDate("2019/06/15", "sleepQuality", 2)).to.equal(4.7);
+  });
+
+  it("should return undefined if sleep quality for a specific day does not exist", () => {
+    expect(sleepRepository.getSleepDataByDate("1995/06/15", "sleepQuality", 1)).to.equal(undefined);
+    expect(sleepRepository.getSleepDataByDate("1995/06/15", "sleepQuality", 2)).to.equal(undefined);
   });
 
   it('should show users sleep hours data per week', () => {
