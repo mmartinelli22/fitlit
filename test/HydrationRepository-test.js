@@ -64,4 +64,8 @@ describe('HydrationRepository', () => {
             { date: '2019/06/21', ounces: 27 }
         ]);
     });
+
+    it('Should return empty array for hydration data per week if user does not exist', () => {
+        expect(hydrationRepository.getUserHydrationPerWeek(500, '2019/06/21')).to.deep.equal([]);
+    });
 });
