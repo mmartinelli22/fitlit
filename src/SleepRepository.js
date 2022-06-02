@@ -28,7 +28,7 @@ class SleepRepository {
 			}
 		});
 		if(!sleepDataByDay) {
-			return sleepDataByDay
+			return sleepDataByDay;
 		} else {
 			return sleepDataByDay[property];
 		}
