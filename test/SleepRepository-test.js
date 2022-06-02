@@ -83,6 +83,10 @@ describe("Sleep", () => {
 		]);
 	});
 
+  it('should return empty array if sleep hours data per week does not exist for user ', () => {
+		expect(sleepRepository.getUsersSleepDataPerWeek(500,'2019/06/21','hoursSlept')).to.deep.equal([]);
+	});
+
   it("should show users sleep quality data per week", () => {   
     expect(sleepRepository.getUsersSleepDataPerWeek(50,"2019/06/21","sleepQuality")).to.deep.equal([
       {"date": "2019/06/15", "sleepQuality": 4.1},
@@ -93,6 +97,10 @@ describe("Sleep", () => {
       {"date": "2019/06/20", "sleepQuality": 1.1},
       {"date": "2019/06/21", "sleepQuality": 1.2}
     ]);
+  });
+
+  it("should return empty array if sleep quality data per week does not exist for user", () => {   
+    expect(sleepRepository.getUsersSleepDataPerWeek(500,"2019/06/21","sleepQuality")).to.deep.equal([]);
   });
 
   it("should have a function to return the average of all user's sleep quality", () => {
