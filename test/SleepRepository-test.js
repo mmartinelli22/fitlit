@@ -38,8 +38,7 @@ describe("Sleep", () => {
   })
 
   it("should return one user's average sleep quality for all time", () => {
-    expect(
-			sleepRepository.getAverageSleepForUserAllTime(1, "sleepQuality")).to.deep.equal(2.614285714285714);
+    expect(sleepRepository.getAverageSleepForUserAllTime(1, "sleepQuality")).to.deep.equal(2.614285714285714);
   });
 
   it("should return NaN sleep quality for all time if user does not exist", () => {
