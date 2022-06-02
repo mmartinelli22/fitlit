@@ -33,7 +33,7 @@ describe("Sleep", () => {
     ]);
   });
 
-  it("should return undefined if id doesn't exist", () => {
+  it("should return an empty array if id doesn't exist", () => {
     expect(sleepRepository.getSleepDataForUser(500)).to.deep.equal([]);
   })
 
@@ -49,6 +49,11 @@ describe("Sleep", () => {
   it("should return hours slept for a specific day", () => {
     expect(sleepRepository.getSleepDataByDate("2019/06/15", "hoursSlept", 1)).to.equal(6.1);
     expect(sleepRepository.getSleepDataByDate("2019/06/15", "hoursSlept", 2)).to.equal(7);
+  });
+
+  it("should return hours slept for a specific day", () => {
+    expect(sleepRepository.getSleepDataByDate("2030/06/15", "hoursSlept", 1)).to.equal(undefined);
+    expect(sleepRepository.getSleepDataByDate("2030/06/15", "hoursSlept", 2)).to.equal(undefined);
   });
 
   it("should return user's slept quality for a specific day", () => {
