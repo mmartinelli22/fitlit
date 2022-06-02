@@ -33,6 +33,10 @@ describe("Sleep", () => {
     ]);
   });
 
+  it("should return undefined if id doesn't exist", () => {
+    expect(sleepRepository.getSleepDataForUser(500)).to.deep.equal([]);
+  })
+
   it("should return one  user's average sleep quality for all time", () => {
     expect(
 			sleepRepository.getAverageSleepForUserAllTime(1, "sleepQuality")).to.deep.equal(2.614285714285714);
