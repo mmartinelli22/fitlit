@@ -33,12 +33,24 @@ describe('HydrationRepository', () => {
         ]);
     });
 
+    it('Should return empty array for user hydration if id number does not exist', () => {
+        expect(hydrationRepository.getHydrationDataForUser(500)).to.deep.equal([]);
+    });
+
     it('Should have a function that returns the average ounces consumed for all time ', () => {
         expect(hydrationRepository.getAllTimeOuncesAverage(1)).to.equal(64.85714285714286);
     });
 
+    it('Should return NaN if user passed in does not exist for average ounces', () => {
+        expect(hydrationRepository.getAllTimeOuncesAverage(500)).to.deep.equal(NaN);
+    });
+
     it('Should have a function that takes in user\'s id and a date and returns the user\'s hydration in ounces for that day', () => {
         expect(hydrationRepository.getUserHydrationForDay(1, '2019/06/15')).to.equal(37);
+    });
+
+    it('Should have a function that returns undefined if user\'s id and a date do not exist', () => {
+        expect(hydrationRepository.getUserHydrationForDay(500, '1995/06/15')).to.equal(undefined);
     });
 
     it('Should show users hydration data per week', () => {
@@ -51,5 +63,9 @@ describe('HydrationRepository', () => {
             { date: '2019/06/20', ounces: 71 },
             { date: '2019/06/21', ounces: 27 }
         ]);
+    });
+
+    it('Should return empty array for hydration data per week if user does not exist', () => {
+        expect(hydrationRepository.getUserHydrationPerWeek(500, '2019/06/21')).to.deep.equal([]);
     });
 });

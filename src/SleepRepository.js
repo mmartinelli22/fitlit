@@ -27,7 +27,11 @@ class SleepRepository {
 				return user;
 			}
 		});
-		return sleepDataByDay[property];
+		if(!sleepDataByDay) {
+			return sleepDataByDay;
+		} else {
+			return sleepDataByDay[property];
+		}
 	}
 
 	getUsersSleepDataPerWeek(id, dateParam, property) {

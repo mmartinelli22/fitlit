@@ -26,6 +26,12 @@ describe('User Repository', () => {
     expect(userRepository.getUserById(1)).to.deep.equal(userData[0]);
     expect(userRepository.getUserById(2)).to.deep.equal(userData[1]);
   });
+
+  it('should have a function that returns undefined if id number does not exist', () => {
+    expect(userRepository.getUserById(500)).to.deep.equal(undefined);
+    expect(userRepository.getUserById(600)).to.deep.equal(undefined);
+  });
+
   it('should have a function to return the average of all user\'s step goals', () => {
     expect(userRepository.getAverageSteps()).to.deep.equal(6700);
   });

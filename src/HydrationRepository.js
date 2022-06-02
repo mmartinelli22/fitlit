@@ -23,7 +23,12 @@ class HydrationRepository {
         const userHydrationDate = this.hydrationData.find((userHydrationData) => {
             return userHydrationData.userID === idNum && userHydrationData.date === date;
         });
-        return userHydrationDate.numOunces;
+
+        if (!userHydrationDate) {
+            return userHydrationDate;
+        } else {
+            return userHydrationDate.numOunces;
+        }
     };
 
     getUserHydrationPerWeek(id, dateParam) {
