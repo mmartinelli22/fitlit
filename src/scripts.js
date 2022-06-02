@@ -22,7 +22,6 @@ const sleepPromise = fetchApiData('https://fitlit-api.herokuapp.com/api/v1/sleep
 
 Promise.all([userPromise, hydrationPromise, sleepPromise])
   .then((value) => {
-    console.log(value)
     setUserData(value[0].userData)
     const thisUser = getUserData();
     userBuildAttributes(thisUser);
@@ -30,7 +29,10 @@ Promise.all([userPromise, hydrationPromise, sleepPromise])
     hydrationBuildAttributes(hydrationRepo);
     setSleepData(value[2].sleepData);
     sleepBuildAttributes(sleepRepo);
-  });
+  })
+  .catch(error => {
+    return errorMessage.innerText = error.message;
+});
 
 const setUserData = (someData) => {
   userRepo = new UserRepository(someData);
