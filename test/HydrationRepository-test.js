@@ -33,12 +33,16 @@ describe('HydrationRepository', () => {
         ]);
     });
 
-    it('Should return empty array if id number does not exist', () => {
+    it('Should return empty array for user hydration if id number does not exist', () => {
         expect(hydrationRepository.getHydrationDataForUser(500)).to.deep.equal([]);
     });
 
     it('Should have a function that returns the average ounces consumed for all time ', () => {
         expect(hydrationRepository.getAllTimeOuncesAverage(1)).to.equal(64.85714285714286);
+    });
+
+    it('Should return NaN if user passed in does not exist for average ounces', () => {
+        expect(hydrationRepository.getAllTimeOuncesAverage(500)).to.deep.equal(NaN);
     });
 
     it('Should have a function that takes in user\'s id and a date and returns the user\'s hydration in ounces for that day', () => {
