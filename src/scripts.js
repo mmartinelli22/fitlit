@@ -11,14 +11,14 @@ var hydrationRepo;
 var sleepRepo;
 
 const getRandomID = () => {
-  return Math.floor(Math.random() * 50) + 1;
+  return Math.floor(Math.random() * 49) + 1;
 };
 
 const userId = getRandomID();
 
-const userPromise = fetchApiData('https://fitlit-api.herokuapp.com/api/v1/users');
-const hydrationPromise = fetchApiData('https://fitlit-api.herokuapp.com/api/v1/hydration');
-const sleepPromise = fetchApiData('https://fitlit-api.herokuapp.com/api/v1/sleep');
+const userPromise = fetchApiData('http://localhost:3001/api/v1/users');
+const hydrationPromise = fetchApiData('http://localhost:3001/api/v1/hydration');
+const sleepPromise = fetchApiData('http://localhost:3001/api/v1/sleep');
 
 Promise.all([userPromise, hydrationPromise, sleepPromise])
   .then((value) => {
@@ -31,6 +31,7 @@ Promise.all([userPromise, hydrationPromise, sleepPromise])
     sleepBuildAttributes(sleepRepo);
   })
   .catch(error => {
+    console.log(error)
     return errorMessage.innerText = error.message;
 });
 
@@ -80,7 +81,7 @@ const userBuildAttributes = (user) => {
 };
 
 const formatHydrationData = () => {
-  const userHydrationDataPerWeek = hydrationRepo.getUserHydrationPerWeek(userId, "2020/01/22");
+  const userHydrationDataPerWeek = hydrationRepo.getUserHydrationPerWeek(userId, "2020/01/20");
   const formattedData = userHydrationDataPerWeek.map(hydrationData => {
     return `${hydrationData.date}: ${hydrationData.ounces} ounces`;
   });
@@ -90,20 +91,20 @@ const formatHydrationData = () => {
 };
 
 const hydrationBuildAttributes = (hydrationRepoParam) => {
-  userWaterDay.innerHTML = `<p>You've drank ${hydrationRepoParam.getUserHydrationForDay(userId, "2020/01/22")} ounces of water today.</p>`;
+  userWaterDay.innerHTML = `<p>You've drank ${hydrationRepoParam.getUserHydrationForDay(userId, "2020/01/20")} ounces of water today.</p>`;
   formatHydrationData();
 }
 
 const sleepBuildAttributes = (sleepRepoParam) => {
-  userSleepPerDay.innerHTML = `<p>You got ${sleepRepoParam.getSleepDataByDate('2020/01/22', 'hoursSlept', userId)} hours sleep today 
-  with ${sleepRepoParam.getSleepDataByDate('2020/01/22', 'sleepQuality', userId)}/5 sleep quality.</p>`;
+  userSleepPerDay.innerHTML = `<p>You got ${sleepRepoParam.getSleepDataByDate("2020/01/20", 'hoursSlept', userId)} hours sleep today 
+  with ${sleepRepoParam.getSleepDataByDate("2020/01/20", 'sleepQuality', userId)}/5 sleep quality.</p>`;
   formatSleepData();
   userSleepAllTime.innerHTML = `<p>On average, you sleep ${sleepRepoParam.getAverageSleepForUserAllTime(userId,"hoursSlept").toFixed(2)} hours a night with an average sleep quality of ${sleepRepoParam.getAverageSleepForUserAllTime(userId,'sleepQuality').toFixed(2)}/5.</p>`
 };
 
 const formatSleepData = () => {
-	const userSleepHoursPerWeek = sleepRepo.getUsersSleepDataPerWeek(userId,'2020/01/22','hoursSlept');
-  const userSleepQualityPerWeek = sleepRepo.getUsersSleepDataPerWeek(userId,'2020/01/22','sleepQuality');
+	const userSleepHoursPerWeek = sleepRepo.getUsersSleepDataPerWeek(userId,"2020/01/20",'hoursSlept');
+  const userSleepQualityPerWeek = sleepRepo.getUsersSleepDataPerWeek(userId,"2020/01/20",'sleepQuality');
 	const formattedHours = userSleepHoursPerWeek.map((hours) => {
 		return `${hours.hoursSlept}`;
 	});
