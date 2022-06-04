@@ -58,6 +58,17 @@ class ActivityRepository {
     return sortedDays[0];
   };
 
+  getUserAverage(idNum, property) {
+    const userActivity = this.getActivityDataForUser(idNum);
+
+    const userAverage = userActivity.reduce((counter, currentDay) => {
+      counter += currentDay[property]
+      return counter;
+    }, 0)/userActivity.length;
+    
+    return userAverage;
+  };
+
 };
 
 export default ActivityRepository;

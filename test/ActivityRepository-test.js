@@ -144,7 +144,7 @@ describe('ActivityRepository', () => {
       });
     })
 
-    it.skip('Should find user\'s averages for numSteps, minutesActive, and flightsOfStairs', () => {
+    it('Should find user\'s averages for numSteps, minutesActive, and flightsOfStairs', () => {
       expect(activityRepository.getUserAverage(1, 'numSteps')).to.equal(8614.75);
       expect(activityRepository.getUserAverage(2, 'minutesActive')).to.equal(152.375);
       expect(activityRepository.getUserAverage(3, 'flightsOfStairs')).to.equal(20.625);
