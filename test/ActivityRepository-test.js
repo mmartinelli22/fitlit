@@ -7,7 +7,6 @@ describe('ActivityRepository', () => {
 
     beforeEach(() => {
       activityRepository = new ActivityRepository(activityData);
-      userRepository = new UserRepository(userData);
     })
 
     it('Should be a function', () => {
@@ -97,9 +96,9 @@ describe('ActivityRepository', () => {
       expect(activityRepository.getAverageActiveMinutesPerWeek(2, '2019/06/22')).to.equal(154)
     });
 
-    it.skip('Should be able to assess if a user met their step goal for a given day', () => {
-      expect(activityRepository.assessUserStepGoalCompeltionperDay(3, '2019/06/17', 5000)).to.equal(false);
-      expect(activityRepository.assessUserStepGoalCompeltionPerDay(1, '2019/06/17', 10000)).to.equal(true);
+    it('Should be able to assess if a user met their step goal for a given day', () => {
+      expect(activityRepository.assessUserStepGoalCompletionPerDay(3, '2019/06/17', 5000)).to.equal(false);
+      expect(activityRepository.assessUserStepGoalCompletionPerDay(1, '2019/06/17', 10000)).to.equal(true);
     });
 
     it.skip('Should get the days a user\'s step goal was achieved', () => {

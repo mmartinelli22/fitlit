@@ -33,7 +33,17 @@ class ActivityRepository {
       return counter
     }, 0);
     return Math.round(activeMinutes / 7);
-  }
+  };
+
+  assessUserStepGoalCompletionPerDay(idNum, date, stepGoal) {
+    const userActivityDay = this.activityData.find(day => day.userID === idNum && day.date === date);
+    if(userActivityDay.numSteps >= stepGoal) {
+      return true;
+    } else {
+      return false;
+    };
+  };
+
 };
 
 export default ActivityRepository;
