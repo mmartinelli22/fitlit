@@ -13,9 +13,13 @@ class ActivityRepository {
 };
 
   getMilesWalked(idNum, date, strideLength) {
-    const activityDataForUser = this.getActivityDataForUser(idNum);
-    const activityOnDay = activityDataForUser.find(day => day.date === date)
+    const activityOnDay = this.activityData.find(day => day.date === date && day.userID === idNum)
    return parseFloat(((activityOnDay.numSteps * strideLength)/5280).toFixed(2));
+  };
+
+  getMinutesActive(idNum, date) {
+    const activityDay = this.activityData.find(day => day.userID === idNum && day.date === date)
+    return activityDay.minutesActive;
   };
 };
 

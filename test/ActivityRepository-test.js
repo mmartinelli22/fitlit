@@ -93,6 +93,6 @@ describe('ActivityRepository', () => {
     });
 
     it('Should be able to calculate minutes active for a user on a specific day', () => {
-      expect(activityRepository.getMinutesActive(2, '2019/06/15').to.equal(138));
-    })
+      expect(activityRepository.getMinutesActive(2, '2019/06/15')).to.equal(138);
+    });
 });
