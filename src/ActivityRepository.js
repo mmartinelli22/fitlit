@@ -44,6 +44,20 @@ class ActivityRepository {
     };
   };
 
+  assessUserStepGoalCompletionAllTime(idNum, stepGoal) {
+    const userActiveDays = this.activityData.filter(day => day.userID === idNum && day.numSteps >= stepGoal);
+    return userActiveDays;
+  };
+
+  getUserStairRecord(idNum) {
+    const userActivity = this.getActivityDataForUser(idNum);
+
+    const sortedDays = userActivity.sort((a, b) => {
+      return b.flightsOfStairs - a.flightsOfStairs
+    });
+    return sortedDays[0];
+  };
+
 };
 
 export default ActivityRepository;

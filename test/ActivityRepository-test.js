@@ -101,7 +101,7 @@ describe('ActivityRepository', () => {
       expect(activityRepository.assessUserStepGoalCompletionPerDay(1, '2019/06/17', 10000)).to.equal(true);
     });
 
-    it.skip('Should get the days a user\'s step goal was achieved', () => {
+    it('Should get the days a user\'s step goal was achieved', () => {
       expect(activityRepository.assessUserStepGoalCompletionAllTime(2, 5000)).to.deep.equal([
         {
           userID: 2,
@@ -133,7 +133,7 @@ describe('ActivityRepository', () => {
         }
       ]);
 
-      it.skip('Should find user\'s all time stair climbing record', () => {
+      it('Should find user\'s all time stair climbing record', () => {
         expect(activityRepository.getUserStairRecord(3)).to.deep.equal({
           userID: 3,
           date: '2019/06/20',
