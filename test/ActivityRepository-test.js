@@ -136,7 +136,15 @@ describe('ActivityRepository', () => {
           flightsOfStairs: 26
         }
       ]);
-
+      it.skip('Should find user\'s all time stair climbing record', () => {
+        expect(activityRepository.getUserStairRecord(3)).to.deep.equal({
+          userID: 3,
+          date: '2019/06/20',
+          numSteps: 5369,
+          minutesActive: 129,
+          flightsOfStairs: 46
+        })
+      })
 
     })
 });
