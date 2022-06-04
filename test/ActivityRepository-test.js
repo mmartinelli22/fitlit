@@ -98,5 +98,10 @@ describe('ActivityRepository', () => {
 
     it('Should be able to calculate the average minutes a day a user was active for a given week', () => {
       expect(activityRepository.getAverageActiveMinutesPerWeek(2, '2019/06/22')).to.equal(154)
-    })
+    });
+
+    it('Should be able to assess if a user met their step goal for a given day', () => {
+      expect(assessUserStepGoalCompeltion(3, '2019/06/17', 5000)).to.equal(false);
+      expect(assessUserStepGoalCompeltion(1, '2019/06/17', 10000)).to.equal(true);
+    });
 });
