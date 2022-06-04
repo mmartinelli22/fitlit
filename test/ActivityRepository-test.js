@@ -136,6 +136,7 @@ describe('ActivityRepository', () => {
           flightsOfStairs: 26
         }
       ]);
+
       it.skip('Should find user\'s all time stair climbing record', () => {
         expect(activityRepository.getUserStairRecord(3)).to.deep.equal({
           userID: 3,
@@ -143,8 +144,13 @@ describe('ActivityRepository', () => {
           numSteps: 5369,
           minutesActive: 129,
           flightsOfStairs: 46
-        })
-      })
-
+        });
+      });
     })
+
+    it.skip('Should find user\'s averages for numSteps, minutesActive, and flightsOfStairs', () => {
+      expect(activityRepository.getUserAverage(1, 'numSteps')).to.equal(8614.75);
+      expect(activityRepository.getUserAverage(2, 'minutesActive')).to.equal(152.375);
+      expect(activityRepository.getUserAverage(3, 'flightsOfStairs')).to.equal(20.625);
+    });
 });
