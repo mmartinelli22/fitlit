@@ -1,12 +1,9 @@
 import { expect } from 'chai';
 import ActivityRepository from '../src/ActivityRepository';
-import UserRepository from '../src/ActivityRepository';
 import activityData from '../src/data/activity'
-import userData from '../src/data/users'
 
 describe('ActivityRepository', () => {
     let activityRepository;
-    let userRepository;
 
     beforeEach(() => {
       activityRepository = new ActivityRepository(activityData);
