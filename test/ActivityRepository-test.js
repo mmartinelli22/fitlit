@@ -91,4 +91,8 @@ describe('ActivityRepository', () => {
     it('Should be able to return miles a user walked for a specific date', () => {
       expect(activityRepository.getMilesWalked(1, '2019/06/15', 4.3)).to.equal(2.91);
     });
+
+    it('Should be able to calculate minutes active for a user on a specific day', () => {
+      expect(activityRepository.getMinutesActive(2, '2019/06/15').to.equal(138));
+    })
 });
