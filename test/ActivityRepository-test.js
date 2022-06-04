@@ -100,8 +100,43 @@ describe('ActivityRepository', () => {
       expect(activityRepository.getAverageActiveMinutesPerWeek(2, '2019/06/22')).to.equal(154)
     });
 
-    it('Should be able to assess if a user met their step goal for a given day', () => {
-      expect(assessUserStepGoalCompeltion(3, '2019/06/17', 5000)).to.equal(false);
-      expect(assessUserStepGoalCompeltion(1, '2019/06/17', 10000)).to.equal(true);
+    it.skip('Should be able to assess if a user met their step goal for a given day', () => {
+      expect(activityRepository.assessUserStepGoalCompeltionperDay(3, '2019/06/17', 5000)).to.equal(false);
+      expect(activityRepository.assessUserStepGoalCompeltionPerDay(1, '2019/06/17', 10000)).to.equal(true);
     });
+
+    it.skip('Should get the days a user\'s step goal was achieved', () => {
+      expect(activityRepository.assessUserStepGoalCompletionAllTime(2, 5000)).to.deep.equal([
+        {
+          userID: 2,
+          date: '2019/06/17',
+          numSteps: 13750,
+          minutesActive: 65,
+          flightsOfStairs: 4
+        },
+        {
+          userID: 2,
+          date: '2019/06/19',
+          numSteps: 9858,
+          minutesActive: 243,
+          flightsOfStairs: 44
+        },
+        {
+          userID: 2,
+          date: '2019/06/20',
+          numSteps: 8153,
+          minutesActive: 74,
+          flightsOfStairs: 10
+        },
+        {
+          userID: 2,
+          date: '2019/06/21',
+          numSteps: 10225,
+          minutesActive: 174,
+          flightsOfStairs: 26
+        }
+      ]);
+
+
+    })
 });
