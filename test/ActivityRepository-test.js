@@ -93,10 +93,10 @@ describe('ActivityRepository', () => {
     });
 
     it('Should be able to calculate minutes active for a user on a specific day', () => {
-      expect(activityRepository.getMinutesActive(2, '2019/06/15')).to.equal(138);
+      expect(activityRepository.getMinutesActivePerDay(2, '2019/06/15')).to.equal(138);
     });
 
     it('Should be able to calculate the average minutes a day a user was active for a given week', () => {
-      expect(getActiveMinutesPerWeek(2, '2019/06/22')).to.equal(154)
+      expect(activityRepository.getAverageActiveMinutesPerWeek(2, '2019/06/22')).to.equal(154)
     })
 });
