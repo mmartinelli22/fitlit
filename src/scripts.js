@@ -135,7 +135,17 @@ const formatSleepData = () => {
 }
 
 const activityBuildAttributes = (activityRepoParam) => {
-userStepPerDay.innerText = `You had ${activityRepoParam.activityData.find(data => data.userID === userId && data.date === "2020/01/20").numSteps} steps.`
+  userStepPerDay.innerText = `You had ${activityRepoParam.activityData.find(data => data.userID === userId && data.date === "2020/01/20").numSteps} steps.`
+  userMinutesActivePerDay.innerText = `You had ${activityRepoParam.activityData.find(data => data.userID === userId && data.date === "2020/01/20").minutesActive} minutes active.`
+  userMilesPerDay.innerText = `You walked ${activityRepoParam.getMilesWalked(userId,"2020/01/20", getUserStrideLength(userId))} miles.`
+  stepComparison.innerText = `On average Fit-Lit users had ${activityRepoParam.getAllUsersAverage("2020/01/20", "numSteps")} steps today.`
+  minutesComparison.innerText = `On average Fit-Lit users had ${activityRepoParam.getAllUsersAverage("2020/01/20", "minutesActive")} active minutes today.`
+  stairsComparison.innerText = `On average Fit-Lit users climbed ${activityRepoParam.getAllUsersAverage("2020/01/20", "flightsOfStairs")} flights of stairs today.`
 };
+
+const getUserStrideLength = (idNum) => {
+  const user = userRepo.users.find(data => data.id === idNum)
+  return user.strideLength
+}
 
 export {errorMessage};
