@@ -68,7 +68,15 @@ class ActivityRepository {
     
     return userAverage;
   };
-
+  
+  getAllUsersAverage(date,property) {
+    const activityDate = this.activityData.filter(data => data.date === date);
+    const allUsersAverage = activityDate.reduce((acc,cur) => {
+        acc += cur[property]
+      return acc
+    },0)/activityDate.length
+    return Math.round(allUsersAverage);
+  }
 };
 
 export default ActivityRepository;
