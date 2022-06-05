@@ -4,11 +4,14 @@ import './css/styles.css';
 import HydrationRepository from './HydrationRepository.js';
 import UserRepository from './UserRepository';
 import SleepRepository from './SleepRepository';
+import ActivityRepository from './ActivityRepository';
+
 
 ///*~~~~~~~~Global Variables~~~~~~~*/
 var userRepo;
 var hydrationRepo;
 var sleepRepo;
+var activityRepo;
 
 const getRandomID = () => {
   return Math.floor(Math.random() * 49) + 1;
@@ -19,8 +22,9 @@ const userId = getRandomID();
 const userPromise = fetchApiData('http://localhost:3001/api/v1/users');
 const hydrationPromise = fetchApiData('http://localhost:3001/api/v1/hydration');
 const sleepPromise = fetchApiData('http://localhost:3001/api/v1/sleep');
+const activityPromise = fetchApiData('http://localhost:3001/api/v1/activity');
 
-Promise.all([userPromise, hydrationPromise, sleepPromise])
+Promise.all([userPromise, hydrationPromise, sleepPromise, activityPromise])
   .then((value) => {
     setUserData(value[0].userData)
     const thisUser = getUserData();
@@ -29,6 +33,8 @@ Promise.all([userPromise, hydrationPromise, sleepPromise])
     hydrationBuildAttributes(hydrationRepo);
     setSleepData(value[2].sleepData);
     sleepBuildAttributes(sleepRepo);
+    setActivityData(value[3].activityData);
+    activityBuildAttributes(activityRepo);
   })
   .catch(error => {
     console.log(error)
@@ -47,6 +53,10 @@ const setSleepData = (someData) => {
   sleepRepo = new SleepRepository(someData);
 };
 
+const setActivityData = (someData) => {
+  activityRepo = new ActivityRepository(someData);
+}
+
 ///*~~~~~~~~QUERY SELECTORS~~~~~~~*/
 var userGreeting = document.querySelector("#userGreeting");
 var emailAddress = document.querySelector("#emailAddress");
@@ -63,6 +73,14 @@ var userSleepAllTime = document.querySelector('#userSleepAllTime');
 var sleepDays = document.querySelectorAll('.sleep-day');
 var errorMessage = document.querySelector('.error-message');
 
+var userStepPerDay = document.querySelector('.user-step-per-day');
+var userMinutesActivePerDay = document.querySelector('.user-minutes-active-per-day');
+var userMilesPerDay = document.querySelector('.user-miles-per-day');
+var stepComparison = document.querySelector('.step-comparison');
+var minutesComparison = document.querySelector('.minutes-comparison');
+var stairsComparison = document.querySelector('.stairs-comparison');
+var activityDays = document.querySelectorAll('.activity-day');
+ 
 //*~~~~~~~~Functions~~~~~~~*//
 function getUserData() {
   var thisUser = userRepo.getUserById(userId);
