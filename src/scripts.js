@@ -72,7 +72,6 @@ var userSleepPerDay = document.querySelector('#UserSleepPerDay');
 var userSleepAllTime = document.querySelector('#userSleepAllTime');
 var sleepDays = document.querySelectorAll('.sleep-day');
 var errorMessage = document.querySelector('.error-message');
-
 var userStepPerDay = document.querySelector('.user-step-per-day');
 var userMinutesActivePerDay = document.querySelector('.user-minutes-active-per-day');
 var userMilesPerDay = document.querySelector('.user-miles-per-day');
@@ -141,11 +140,30 @@ const activityBuildAttributes = (activityRepoParam) => {
   stepComparison.innerText = `On average Fit-Lit users had ${activityRepoParam.getAllUsersAverage("2020/01/20", "numSteps")} steps today.`
   minutesComparison.innerText = `On average Fit-Lit users had ${activityRepoParam.getAllUsersAverage("2020/01/20", "minutesActive")} active minutes today.`
   stairsComparison.innerText = `On average Fit-Lit users climbed ${activityRepoParam.getAllUsersAverage("2020/01/20", "flightsOfStairs")} flights of stairs today.`
+  formatActivityData();
 };
 
 const getUserStrideLength = (idNum) => {
   const user = userRepo.users.find(data => data.id === idNum)
   return user.strideLength
+}
+
+const formatActivityData = () => {
+	const userStepsPerWeek = activityRepo.getUsersActivityDataPerWeek(userId,"2020/01/20",'numSteps');
+  const userMinutesActivePerWeek = activityRepo.getUsersActivityDataPerWeek(userId,"2020/01/20",'minutesActive');
+  const userStairsPerWeek = activityRepo.getUsersActivityDataPerWeek(userId,"2020/01/20",'flightsOfStairs');
+	const formattedSteps = userStepsPerWeek.map((steps) => {
+		return `${steps.numSteps}`;
+	});
+  const formattedMinutes = userMinutesActivePerWeek.map((minutes) => {
+		return `${minutes.minutesActive}`;
+	});
+  const formattedStairs = userStairsPerWeek.map((stairs) => {
+		return `${stairs.flightsOfStairs}`;
+	});
+	activityDays.forEach((dayElem, index) => {
+		dayElem.innerText = `${userStepsPerWeek[index].date} : ${formattedSteps[index]} steps, ${formattedMinutes[index]} minutes active, ${formattedStairs[index]} flights of stairs climbed.`;
+	});
 }
 
 export {errorMessage};
