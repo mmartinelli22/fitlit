@@ -134,4 +134,8 @@ const formatSleepData = () => {
 	});
 }
 
+const activityBuildAttributes = (activityRepoParam) => {
+userStepPerDay.innerText = `You had ${activityRepoParam.activityData.find(data => data.userID === userId && data.date === "2020/01/20").numSteps} steps.`
+};
+
 export {errorMessage};
