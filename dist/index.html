@@ -1,95 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jaldi&display=swap" rel="stylesheet">
-    <meta charset="UTF-8">
-    <title>Fitlit</title>
-  </head>
-  <body>
-     <header> 
-       <h1 class="title">fitlit</h1> 
-       <h2 id="userGreeting"></h2> 
-     </header>
-     <p class="error-message"></p>
-     <main>
-       <div class="user-card card">
-         <h3 class="user-info">User Info</h3>
-         <div class="card-box" id="userCardProperties">
-          <p id = "userName"></p>
-          <p id = "emailAddress"></p>
-          <p id = "address"></p>
-          <p id = "strideLength"></p>
-          <p id = "friends"></p>
-         </div>
-         <div class="user-step-goal-info card-box" id="userStepGoalInfo">
-           <p id = "stepGoal"></p>
-           <p id= "averageStepGoal"></p>
-         </div>
-       </div>
-       <div class="hydration-card card">
-         <h3 class="hydration-info">Hydration Info</h3>
-         <div class="user-water-per-day card-box" id="userWaterPerDay">
-           <p>You've drank 2 oz water today.</p>
-         </div>
-         <div class="user-water-per-week card-box" id="userWaterPerWeek">
-           <h4>Water drank over the last week:</h4>
-           <p class="hydration-day"></p>
-           <p class="hydration-day"></p>
-           <p class="hydration-day"></p>
-           <p class="hydration-day"></p>
-           <p class="hydration-day"></p>
-           <p class="hydration-day"></p>
-           <p class="hydration-day"></p>
-         </div>
-       </div>
-       <div class="sleep-card card">
-         <h3 class="sleep-info">Sleep Info</h3>
-         <div class="user-sleep-per-day card-box" id="UserSleepPerDay">
-           <p>You got 8 hours sleep today.</p>
-         </div>
-         <div class="user-sleep-per-week card-box" id="userSleepPerWeek">
-          <h4>Sleep over the last week:</h4>
-            <p class="sleep-day"></p>
-            <p class="sleep-day"></p>
-            <p class="sleep-day"></p>
-            <p class="sleep-day"></p>
-            <p class="sleep-day"></p>
-            <p class="sleep-day"></p>
-            <p class="sleep-day"></p>
-         </div>
-         <div class="user-sleep-all-time card-box" id="userSleepAllTime">
-           <p>You slept average 8.2 hours all time.</p>
-           <p>Your sleep quality average is 3.6 out of 5.</p>
-         </div>
-       </div>
-       <div class="activity-card card">
-         <h3 class="activity-info">Activity Info</h3>
-         <div class="user-activity-per-day card-box" id="userActivityPerDay">
-           <h4>Activity for today:</h4>
-           <p class="user-step-per-day"></p>
-           <p class="user-minutes-active-per-day"></p>
-           <p class="user-miles-per-day"></p>
-         </div>
-         <div class="users-average card-box" id="usersAverage">
-           <h4>How your activity compares to others:</h4>
-           <p class="step-comparison"></p>
-           <p class="minutes-comparison"></p>
-           <p class="stairs-comparison"></p>
-         </div> 
-         <div class="user-activity-per-week card-box" id="userActivityPerWeek">
-            <h4>Activity over the last week:</h4>
-            <p class="activity-day"></p>
-            <p class="activity-day"></p>
-            <p class="activity-day"></p>
-            <p class="activity-day"></p>
-            <p class="activity-day"></p>
-            <p class="activity-day"></p>
-            <p class="activity-day"></p>
-         </div>
-       </div>
-     </main> 
-    <script src="bundle.js"></script>
-  </body>
+
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jaldi&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Fitlit</title>
+</head>
+
+<body>
+  <header>
+    <h1 class="title">fitlit</h1>
+    <h2 id="userGreeting"></h2>
+  </header>
+  <p class="error-message"></p>
+  <main>
+    <div class="user-card card">
+      <h3 class="user-info">User Info</h3>
+      <div class="card-box" id="userCardProperties">
+        <p id="userName"></p>
+        <p id="emailAddress"></p>
+        <p id="address"></p>
+        <p id="strideLength"></p>
+        <p id="friends"></p>
+      </div>
+      <div class="user-step-goal-info card-box" id="userStepGoalInfo">
+        <p id="stepGoal"></p>
+        <p id="averageStepGoal"></p>
+      </div>
+    </div>
+    <div class="hydration-card card">
+      <h3 class="hydration-info">Hydration Info</h3>
+      <div class="user-water-per-day card-box" id="userWaterPerDay">
+        <p>You've drank 2 oz water today.</p>
+      </div>
+      <div class="user-water-per-week card-box" id="userWaterPerWeek">
+        <h4>Water drank over the last week:</h4>
+        <p class="hydration-day"></p>
+        <p class="hydration-day"></p>
+        <p class="hydration-day"></p>
+        <p class="hydration-day"></p>
+        <p class="hydration-day"></p>
+        <p class="hydration-day"></p>
+        <p class="hydration-day"></p>
+      </div>
+      <label for=“dateInput”>Date in YYYY/MM/DD</label>
+      <input type="text" id=“dateInput" placeholder=Date>
+      <label for="“numOuncesInput">DID YOU DRINK TODAY?</label>
+      <input type="text" id=“numOuncesInput" placeholder="Ounces Drank">
+      <button>submit</button>
+    </div>
+    <div class="sleep-card card">
+      <h3 class="sleep-info">Sleep Info</h3>
+      <div class="user-sleep-per-day card-box" id="UserSleepPerDay">
+        <p>You got 8 hours sleep today.</p>
+      </div>
+      <div class="user-sleep-per-week card-box" id="userSleepPerWeek">
+        <h4>Sleep over the last week:</h4>
+        <p class="sleep-day"></p>
+        <p class="sleep-day"></p>
+        <p class="sleep-day"></p>
+        <p class="sleep-day"></p>
+        <p class="sleep-day"></p>
+        <p class="sleep-day"></p>
+        <p class="sleep-day"></p>
+      </div>
+      <div class="user-sleep-all-time card-box" id="userSleepAllTime">
+        <p>You slept average 8.2 hours all time.</p>
+        <p>Your sleep quality average is 3.6 out of 5.</p>
+      </div>
+    </div>
+    <div class="activity-card card">
+      <h3 class="activity-info">Activity Info</h3>
+      <div class="user-activity-per-day card-box" id="userActivityPerDay">
+        <h4>Activity for today:</h4>
+        <p class="user-step-per-day"></p>
+        <p class="user-minutes-active-per-day"></p>
+        <p class="user-miles-per-day"></p>
+      </div>
+      <div class="users-average card-box" id="usersAverage">
+        <h4>How your activity compares to others:</h4>
+        <p class="step-comparison"></p>
+        <p class="minutes-comparison"></p>
+        <p class="stairs-comparison"></p>
+      </div>
+      <div class="user-activity-per-week card-box" id="userActivityPerWeek">
+        <h4>Activity over the last week:</h4>
+        <p class="activity-day"></p>
+        <p class="activity-day"></p>
+        <p class="activity-day"></p>
+        <p class="activity-day"></p>
+        <p class="activity-day"></p>
+        <p class="activity-day"></p>
+        <p class="activity-day"></p>
+      </div>
+    </div>
+  </main>
+  <script src="bundle.js"></script>
+</body>
+
 </html>
